@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.Random;
@@ -20,10 +19,12 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView textView3 =(TextView) findViewById(R.id.textView3);
-        Button button = (Button) findViewById(R.id.button);
+        final TextView textView3 =(TextView) findViewById(R.id.whatUp);
+        final TextView theScore = (TextView) findViewById(R.id.keepScore);
+        Button button = (Button) findViewById(R.id.clickMeButton);
         final RelativeLayout root =(RelativeLayout)findViewById(R.id.root);
         final Random rand = new Random();
+
         button.setOnClickListener(new View.OnClickListener() {
 
             /* When the button is clicked change the background color to a random color and
@@ -38,6 +39,10 @@ public class MainActivity extends ActionBarActivity {
                 int b = rand.nextInt(255);
                 int randomColor = Color.rgb(r, g, b);
                 int randomText = randomColor/((rand.nextInt(9)+2));
+                int scoreToInt = Integer.parseInt(theScore.getText().toString());
+                scoreToInt++;
+                theScore.setText(Integer.toString(scoreToInt));
+
 
                 if(flag==1){
 

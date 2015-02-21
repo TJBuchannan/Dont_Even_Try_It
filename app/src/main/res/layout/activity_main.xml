@@ -15,17 +15,28 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/hello_there"
         android:textSize="40dp"
-        android:id="@+id/textView3"
+        android:id="@+id/whatUp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_1"
-        android:id="@+id/button"
-        android:layout_below="@+id/textView3"
+        android:text="@string/clickMe"
+        android:id="@+id/clickMeButton"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp" />
+        android:layout_marginBottom="76dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/keepScore"
+        android:textSize="150dp"
+        android:layout_below="@+id/whatUp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp" />
 
 </RelativeLayout>
