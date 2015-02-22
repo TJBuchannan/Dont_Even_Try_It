@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.Random;
 
+import me.grantland.widget.AutofitHelper;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,6 +24,9 @@ public class MainActivity extends ActionBarActivity {
     RelativeLayout root;
     Random rand;
     int vegetaHuahId;
+    String scoreText;
+    int randomColor;
+    int randomTextColor;
 
 
     @Override
@@ -37,6 +41,8 @@ public class MainActivity extends ActionBarActivity {
         button = (Button) findViewById(R.id.clickMeButton);
         root =(RelativeLayout)findViewById(R.id.root);
         rand = new Random();
+        AutofitHelper.create(theScore);
+
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -47,27 +53,34 @@ public class MainActivity extends ActionBarActivity {
              public void onClick(View v) {
                  mySound.play(vegetaHuahId, 1, 1, 1, 0, 1f);
                 //Random color generator
-                int r = rand.nextInt(255);
-                int g = rand.nextInt(255);
-                int b = rand.nextInt(255);
-                int randomColor = Color.rgb(r, g, b);
-                int randomText = randomColor/((rand.nextInt(9)+2));
-                int scoreToInt = Integer.parseInt(theScore.getText().toString());
+                randomColor = Color.rgb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+                randomTextColor = Color.rgb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+                while (randomColor==randomTextColor){
+                    randomTextColor=Color.rgb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+                    }
+                //increase the text score
+                scoreText=theScore.getText().toString();
+                int scoreToInt = Integer.parseInt(scoreText);
                 scoreToInt++;
                 theScore.setText(Integer.toString(scoreToInt));
+
+                //Text auto resize
+                if(theScore.getText().length()>scoreText.length()){
+                    AutofitHelper.create(theScore);
+                }
 
 
                 if(flag==1){
 
                     textView3.setText("Please Stop!");
                     root.setBackgroundColor(randomColor);
-                    textView3.setTextColor(randomText);
+                    textView3.setTextColor(randomTextColor);
                     flag=0;}
                 else{
                     textView3.setText("I said Stop!");
                     flag=1;
                     root.setBackgroundColor(randomColor);
-                    textView3.setTextColor(randomText);
+                    textView3.setTextColor(randomTextColor);
                 }
 
 
