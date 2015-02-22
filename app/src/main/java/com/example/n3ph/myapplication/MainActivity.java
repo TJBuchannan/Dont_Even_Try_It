@@ -46,7 +46,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
              public void onClick(View v) {
                  mySound.play(vegetaHuahId, 1, 1, 1, 0, 1f);
-
                 //Random color generator
                 int r = rand.nextInt(255);
                 int g = rand.nextInt(255);
