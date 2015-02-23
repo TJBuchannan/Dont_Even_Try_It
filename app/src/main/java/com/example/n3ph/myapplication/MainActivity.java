@@ -27,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
     String scoreText;
     int randomColor;
     int randomTextColor;
+    int bonerId;
+    int soundFlag;
 
 
     @Override
@@ -36,12 +38,14 @@ public class MainActivity extends ActionBarActivity {
 
         mySound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         vegetaHuahId = mySound.load(this, R.raw.vegeta_huah, 1);
+        bonerId = mySound.load(this, R.raw.boner, 1);
         textView3 =(TextView) findViewById(R.id.whatUp);
         theScore = (TextView) findViewById(R.id.keepScore);
         button = (Button) findViewById(R.id.clickMeButton);
         root =(RelativeLayout)findViewById(R.id.root);
         rand = new Random();
         AutofitHelper.create(theScore);
+        soundFlag=0;
 
 
 
@@ -49,9 +53,15 @@ public class MainActivity extends ActionBarActivity {
             /* When the button is clicked change the background color to a random color and
             * change the text*/
             int flag = 1;
+
             @Override
              public void onClick(View v) {
-                 mySound.play(vegetaHuahId, 1, 1, 1, 0, 1f);
+                 if(soundFlag == 0){
+                     mySound.play(vegetaHuahId, 1, 1,0, 0, 1f);
+                 }
+                else if(soundFlag == 1){
+                     mySound.play(bonerId, 1, 1,0, 0, 1f);
+                 }
                 //Random color generator
                 randomColor = Color.rgb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
                 randomTextColor = Color.rgb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
@@ -69,6 +79,9 @@ public class MainActivity extends ActionBarActivity {
                     AutofitHelper.create(theScore);
                 }
 
+                if(Integer.parseInt(theScore.getText().toString())%10==0){
+                    soundFlag=1;
+                }
 
                 if(flag==1){
 
